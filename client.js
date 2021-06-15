@@ -41,3 +41,19 @@ const employees = [
 // Ask questions when you don't.
 
 console.log( employees );
+
+function EmployeeBonusObject(employeeObject) {
+  this.name = employeeObject.name;
+  this.bonusPercentage = 0;
+  this.totalCompensation = employeeObject.annualSalary + 0;
+  this.totalBonus = 0;
+}
+
+
+for (const employee of employees) {
+  console.log(employee.name);
+}
+
+for (const employee of employees) {
+  console.log(new EmployeeBonusObject(employee));
+}
