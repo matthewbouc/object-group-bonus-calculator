@@ -1,3 +1,10 @@
+$(document).ready(readyNow);
+
+function readyNow() {
+    console.log('JQ');
+    $('#programButton').on('click', runCalculator);
+}
+
 const employees = [
   {
     name: 'Atticus',
@@ -39,8 +46,8 @@ const employees = [
 
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
+const employeesWithBonuses = []
 
-console.log( employees );
 
 function EmployeeBonusObject(employeeObject) {
   let bonusPercentage = 0;
@@ -79,12 +86,30 @@ function EmployeeBonusObject(employeeObject) {
 
 
 function bonusCalculator (employeesArray) {
+  let el = $('#list-output');
+  el.empty();
   for (const employee of employeesArray) {
-  console.log(employee.name);
+    console.log(employee.name);
+    let employeeBonus = new EmployeeBonusObject(employee);
+    employeesWithBonuses.push(employeeBonus);
+    // adds employee info to the DOM
+    //console.log(employeeBonus.name);
+    el.append(`<li>Name: ${employeeBonus.name}<br>Bonus Percent: ${employeeBonus.bonusPercentage}<br>
+              Total Compensation: ${employeeBonus.totalCompensation}<br>Total Bonus: ${employeeBonus.totalBonus}</li>`)
   }
 }
 
-
-for (const employee of employees) {
-  console.log(new EmployeeBonusObject(employee));
+function runCalculator() {
+  bonusCalculator(employees);
 }
+
+
+// function addToDom(finalEmployeeObject) {
+//   let el = $('#list-output');
+//   el.empty();
+//   el.append(`<li>Name: `${employeesWithBonuses.name}`</li>`)
+// }
+
+console.log( employees );
+// bonusCalculator(employees);
+console.log(employeesWithBonuses);
