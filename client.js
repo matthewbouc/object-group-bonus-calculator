@@ -43,16 +43,30 @@ const employees = [
 console.log( employees );
 
 function EmployeeBonusObject(employeeObject) {
+  let bonusPercentage = 0;
+  if (employeeObject.reviewRating <= 2) {
+    bonusPercentage = 0;
+  } else if (employeeObject.reviewRating === 3) {
+    bonusPercentage = 4;
+  } else if (employeeObject.reviewRating === 4) {
+    bonusPercentage = 6;
+  } else if (employeeObject.reviewRating === 5) {
+    bonusPercentage = 10;
+  }
+  
   this.name = employeeObject.name;
-  this.bonusPercentage = 0;
+  this.bonusPercentage = bonusPercentage;
   this.totalCompensation = employeeObject.annualSalary + 0;
   this.totalBonus = 0;
 }
 
 
-for (const employee of employees) {
+function bonusCalculator (employeesArray) {
+  for (const employee of employeesArray) {
   console.log(employee.name);
+  }
 }
+
 
 for (const employee of employees) {
   console.log(new EmployeeBonusObject(employee));
