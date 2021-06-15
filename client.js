@@ -53,11 +53,28 @@ function EmployeeBonusObject(employeeObject) {
   } else if (employeeObject.reviewRating === 5) {
     bonusPercentage = 10;
   }
-  
+
+  if (employeeObject.employeeNumber.length === 4 && !employeeObject.reviewRating <= 2) {
+    bonusPercentage += 5;
+  }
+
+
+  if (employeeObject.annualSalary > 65000) {
+    bonusPercentage -= 1;
+  }
+
+  if (bonusPercentage > 13) {
+    bonusPercentage = 13;
+  } else if (bonusPercentage < 0) {
+    bonusPercentage = 0;
+  }
+
+  let bonusDollars = Math.round(employeeObject.annualSalary * (bonusPercentage / 100));
+
   this.name = employeeObject.name;
   this.bonusPercentage = bonusPercentage;
-  this.totalCompensation = employeeObject.annualSalary + 0;
-  this.totalBonus = 0;
+  this.totalCompensation = Number(employeeObject.annualSalary) + bonusDollars;
+  this.totalBonus = bonusDollars;
 }
 
 
